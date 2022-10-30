@@ -1,66 +1,82 @@
+const { get } = require("browser-sync");
 
-const author = () = {
+const roomType = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
+const checkIn = ['12:00', '13:00', '14:00'];
+const checkOut = ['12:00', '13:00', '14:00'];
+const roomFeatures = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+const roomPhotos = ['https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg', 'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg']
 
-return {avatar: `img/avatars/user{{xx}}.png`}
+
+function getRandomInt(max, min) {
+  if(max < 0 || min < 0) {
+    console.log('NaN');}
+else{
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+}
+
+function getRandomFloat (min, max, precision){
+  let x = (Math.random()*(max - min + 1) + min);
+  if(x > max) {
+  x = Math.floor(x);}
+  return x.toFixed(precision);
+}
+
+// function getAuthor () {
+//   let generatedNumbers = [];
+//   for (i = 0; i <= 9; i++){
+//   let a = getRandomInt(1, 10);
+//   generatedNumbers.push(a);
+//   }
+//   let author = {
+//     avatar: `img/avatars/user{$generatedNumbers[i]}.png`
+//   }
+//   return{ author
+// }
+function makeOffer () {
+ function getLatitude () {
+  let lat = getRandomFloat(35.65000, 35.70000, 5);
+return lat;
+ }
+
+ function getLongitude () {
+    let lng = getRandomFloat(139.7000, 139.80000, 5);
+return lng;
+ }
+ function getAddress () {
+let location = {
+  lng: getLongitude(),
+  lat: getLatitude()
+}
+  return { location }}
+  return {
+    title: 'Лучший букинг с Кексобукингом!',
+
+    address: getAddress(),
+
+    price: getRandomInt(0, 100),
+
+    type: roomType[getRandomInt(0, roomType.length - 1)],
+
+    rooms: getRandomInt(1, 100),
+
+    guests: getRandomInt(1, 100),
+
+    checkin: checkIn[getRandomInt(0, checkIn.length - 1)],
+
+    checkout: checkOut[getRandomInt(0, checkOut.length - 1)],
+
+    features: roomFeatures[getRandomInt(0, roomFeatures.length - 1)],
+
+    description: 'Самый лучший номер!',
+
+    photos: roomPhotos[getRandomInt(0, roomPhotos.length - 1)]}
+
+    getAddress();
+
 };
-const offer = () => {
-  return{
-    title:
 
-    address: ,
-
-    price: ,
-
-    type: ,
-
-    rooms: ,
-
-    guests: ,
-
-    checkin: ,
-
-    checkout: ,
-
-    features = [wifi, dishwasher, parking, washer, elevator, conditioner]
-
-    description: ,
-
-    photos:}
-
-}
-
-
-// author =
-
-// {avatar};
-//строка — адрес изображения вида img/avatars/user{{xx}}.png, где {{xx}} — это число от 1 до 10. Перед однозначными числами ставится 0. Например, 01, 02...10. Адреса изображений не повторяются.
-// let offer = {
-// title, строка — заголовок предложения. Придумайте самостоятельно.
-
-// address, строка — адрес предложения. Для простоты пусть пока составляется из географических координат по маске {{location.lat}}, {{location.lng}}.
-
-// price, число — стоимость. Случайное целое положительное число.
-
-// type, строка — одно из пяти фиксированных значений: palace, flat, house, bungalow или hotel.
-
-// rooms, число — количество комнат. Случайное целое положительное число.
-
-// guests, число — количество гостей, которое можно разместить. Случайное целое положительное число.
-
-// checkin, строка — одно из трёх фиксированных значений: 12:00, 13:00 или 14:00.
-
-// checkout, строка — одно из трёх фиксированных значений: 12:00, 13:00 или 14:00.
-
-// features, массив строк — массив случайной длины из значений: wifi, dishwasher, parking, washer, elevator, conditioner. Значения не должны повторяться.
-
-// description, строка — описание помещения. Придумайте самостоятельно.
-
-// photos, массив строк — массив случайной длины из значений: https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg, https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg, https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg.
-
-let location =
-
-{lat, //число с плавающей точкой — широта, случайное значение от 35.65000 до 35.70000.
-
-lng, //число с плавающей точкой — долгота, случайное значение от 139.70000 до 139.80000.}
-
-}
+let offer = new makeOffer();
+console.log(offer);
